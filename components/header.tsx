@@ -91,13 +91,13 @@ export default function Header() {
           <div className="flex items-center justify-between mb-8">
             <svg width="60" height="60" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <linearGradient id="mobileRedGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#ef4444" />
-                  <stop offset="50%" stopColor="#dc2626" />
-                  <stop offset="100%" stopColor="#b91c1c" />
+                <linearGradient id="mobileBlueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#3b82f6" />
+                  <stop offset="50%" stopColor="#2563eb" />
+                  <stop offset="100%" stopColor="#1d4ed8" />
                 </linearGradient>
               </defs>
-              <circle cx="60" cy="60" r="56" fill="none" stroke="url(#mobileRedGradient)" strokeWidth="3" />
+              <circle cx="60" cy="60" r="56" fill="none" stroke="url(#mobileBlueGradient)" strokeWidth="3" />
               <circle cx="60" cy="60" r="52" fill="#0a0a0a" />
               <text
                 x="60"
@@ -116,7 +116,7 @@ export default function Header() {
                 fontFamily="Arial Black, sans-serif"
                 fontSize="22"
                 fontWeight="900"
-                fill="url(#mobileRedGradient)"
+                fill="url(#mobileBlueGradient)"
               >
                 J
               </text>
@@ -129,11 +129,11 @@ export default function Header() {
                     width="6"
                     height="6"
                     rx="1"
-                    fill="url(#mobileRedGradient)"
+                    fill="url(#mobileBlueGradient)"
                     transform={`rotate(${angle} 78 68)`}
                   />
                 ))}
-                <circle cx="78" cy="68" r="12" fill="url(#mobileRedGradient)" />
+                <circle cx="78" cy="68" r="12" fill="url(#mobileBlueGradient)" />
                 <circle cx="78" cy="68" r="5" fill="#0a0a0a" />
               </g>
             </svg>

@@ -44,7 +44,6 @@ export default function Hero() {
             <span className="text-foreground/70 text-sm">Fix JO - مركز صيانة عمان المعتمد</span>
           </div>
 
-          {/* Main Heading - Red text with shimmer effect */}
           <h1
             className={`text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 transition-all duration-700 delay-100 ${
               isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
@@ -121,7 +120,6 @@ export default function Hero() {
                 alt="صيانة الغسالات"
                 className="w-64 h-64 md:w-80 md:h-80 object-cover mx-auto rounded-2xl shadow-2xl"
               />
-              {/* Decorative elements */}
               <div className="absolute -top-4 -right-4 w-8 h-8 bg-primary rounded-full animate-pulse"></div>
               <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-primary/60 rounded-full animate-pulse animation-delay-300"></div>
               <div className="absolute top-1/2 -left-8 w-4 h-4 bg-primary/40 rounded-full animate-pulse animation-delay-500"></div>

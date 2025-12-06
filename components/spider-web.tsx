@@ -74,7 +74,6 @@ export default function SpiderWeb() {
         node.x = Math.max(0, Math.min(canvas.offsetWidth, node.x))
         node.y = Math.max(0, Math.min(canvas.offsetHeight, node.y))
 
-        // Draw connections to other nodes
         for (let j = i + 1; j < nodes.length; j++) {
           const other = nodes[j]
           const dx = other.x - node.x
@@ -86,13 +85,12 @@ export default function SpiderWeb() {
             ctx.beginPath()
             ctx.moveTo(node.x, node.y)
             ctx.lineTo(other.x, other.y)
-            ctx.strokeStyle = `rgba(220, 38, 38, ${opacity * 0.3})`
+            ctx.strokeStyle = `rgba(37, 99, 235, ${opacity * 0.3})`
             ctx.lineWidth = 1
             ctx.stroke()
           }
         }
 
-        // Draw connection to mouse
         const mouseDx = mouse.x - node.x
         const mouseDy = mouse.y - node.y
         const mouseDistance = Math.sqrt(mouseDx * mouseDx + mouseDy * mouseDy)
@@ -102,15 +100,14 @@ export default function SpiderWeb() {
           ctx.beginPath()
           ctx.moveTo(node.x, node.y)
           ctx.lineTo(mouse.x, mouse.y)
-          ctx.strokeStyle = `rgba(220, 38, 38, ${opacity * 0.6})`
+          ctx.strokeStyle = `rgba(37, 99, 235, ${opacity * 0.6})`
           ctx.lineWidth = 1.5
           ctx.stroke()
         }
 
-        // Draw node
         ctx.beginPath()
         ctx.arc(node.x, node.y, 2, 0, Math.PI * 2)
-        ctx.fillStyle = "rgba(220, 38, 38, 0.6)"
+        ctx.fillStyle = "rgba(37, 99, 235, 0.6)"
         ctx.fill()
       })
 

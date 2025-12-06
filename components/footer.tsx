@@ -1,5 +1,6 @@
 import { Phone, MapPin, Mail, Heart, Code, Sparkles } from "lucide-react"
 import Link from "next/link"
+import Logo from "./logo"
 
 export default function Footer() {
   return (
@@ -10,65 +11,7 @@ export default function Footer() {
           {/* About */}
           <div className="md:col-span-2">
             <div className="mb-6">
-              <svg width="100" height="100" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <linearGradient id="footerRedGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#ef4444" />
-                    <stop offset="50%" stopColor="#dc2626" />
-                    <stop offset="100%" stopColor="#b91c1c" />
-                  </linearGradient>
-                  <filter id="footerGlow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="2" result="coloredBlur" />
-                    <feMerge>
-                      <feMergeNode in="coloredBlur" />
-                      <feMergeNode in="SourceGraphic" />
-                    </feMerge>
-                  </filter>
-                </defs>
-                <circle cx="60" cy="60" r="56" fill="none" stroke="url(#footerRedGradient)" strokeWidth="3" />
-                <circle cx="60" cy="60" r="52" fill="#0a0a0a" />
-                <text
-                  x="60"
-                  y="48"
-                  fontFamily="Arial Black, sans-serif"
-                  fontSize="22"
-                  fontWeight="900"
-                  fill="#ffffff"
-                  textAnchor="middle"
-                >
-                  FIX
-                </text>
-                <text
-                  x="45"
-                  y="78"
-                  fontFamily="Arial Black, sans-serif"
-                  fontSize="22"
-                  fontWeight="900"
-                  fill="url(#footerRedGradient)"
-                  filter="url(#footerGlow)"
-                >
-                  J
-                </text>
-                <g>
-                  {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map((angle, i) => (
-                    <rect
-                      key={i}
-                      x="75"
-                      y="52"
-                      width="6"
-                      height="6"
-                      rx="1"
-                      fill="url(#footerRedGradient)"
-                      transform={`rotate(${angle} 78 68)`}
-                    />
-                  ))}
-                  <circle cx="78" cy="68" r="12" fill="url(#footerRedGradient)" />
-                  <circle cx="78" cy="68" r="5" fill="#0a0a0a" />
-                </g>
-                <text x="60" y="100" fontFamily="Arial, sans-serif" fontSize="8" fill="#9ca3af" textAnchor="middle">
-                  صيانة احترافية
-                </text>
-              </svg>
+              <Logo size="lg" animated={false} />
             </div>
             <p className="text-gray-400 leading-relaxed mb-4 max-w-md">
               نقدم خدمات صيانة وإصلاح متكاملة لجميع الأجهزة الكهربائية المنزلية في عمان والأردن بأعلى معايير الجودة
@@ -102,7 +45,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Quick Links - Added spare parts link */}
+          {/* Quick Links */}
           <div>
             <h3 className="text-lg font-bold mb-4 text-primary">روابط سريعة</h3>
             <ul className="space-y-3">
@@ -196,7 +139,7 @@ export default function Footer() {
                 <Code className="w-4 h-4 text-primary" />
                 <Sparkles className="w-4 h-4 text-primary animate-pulse" />
               </div>
-              <span className="font-bold text-white bg-gradient-to-r from-primary to-red-400 bg-clip-text text-transparent">
+              <span className="font-bold text-white bg-gradient-to-r from-primary to-blue-400 bg-clip-text text-transparent">
                 Ahmed Elhenawy
               </span>
             </div>
