@@ -63,6 +63,7 @@ export default function Header() {
               <span>طلب الخدمة</span>
             </a>
 
+            {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(true)}
               className="lg:hidden p-2 rounded-lg hover:bg-secondary transition-colors"
@@ -89,54 +90,36 @@ export default function Header() {
       >
         <div className="p-6">
           <div className="flex items-center justify-between mb-8">
-            <svg width="60" height="60" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="mobileBlueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#3b82f6" />
-                  <stop offset="50%" stopColor="#2563eb" />
-                  <stop offset="100%" stopColor="#1d4ed8" />
-                </linearGradient>
-              </defs>
-              <circle cx="60" cy="60" r="56" fill="none" stroke="url(#mobileBlueGradient)" strokeWidth="3" />
-              <circle cx="60" cy="60" r="52" fill="#0a0a0a" />
-              <text
-                x="60"
-                y="48"
-                fontFamily="Arial Black, sans-serif"
-                fontSize="22"
-                fontWeight="900"
-                fill="#ffffff"
-                textAnchor="middle"
-              >
-                FIX
-              </text>
-              <text
-                x="45"
-                y="78"
-                fontFamily="Arial Black, sans-serif"
-                fontSize="22"
-                fontWeight="900"
-                fill="url(#mobileBlueGradient)"
-              >
-                J
-              </text>
-              <g className="origin-[78px_68px] animate-spin" style={{ animationDuration: "8s" }}>
-                {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map((angle, i) => (
-                  <rect
-                    key={i}
-                    x="75"
-                    y="52"
-                    width="6"
-                    height="6"
-                    rx="1"
-                    fill="url(#mobileBlueGradient)"
-                    transform={`rotate(${angle} 78 68)`}
-                  />
-                ))}
-                <circle cx="78" cy="68" r="12" fill="url(#mobileBlueGradient)" />
-                <circle cx="78" cy="68" r="5" fill="#0a0a0a" />
-              </g>
-            </svg>
+            <div className="flex items-center gap-2">
+              <svg width="100" height="50" viewBox="0 0 280 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="mobileRedGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#ef4444" />
+                    <stop offset="50%" stopColor="#dc2626" />
+                    <stop offset="100%" stopColor="#b91c1c" />
+                  </linearGradient>
+                </defs>
+                <g>
+                  <path d="M35 95 L55 55 L65 60 L50 95 Z" fill="url(#mobileRedGradient)" />
+                  <circle cx="60" cy="50" r="15" fill="url(#mobileRedGradient)" />
+                  <circle cx="60" cy="50" r="8" fill="white" />
+                  <rect x="30" y="92" width="25" height="8" rx="2" fill="url(#mobileRedGradient)" />
+                </g>
+                <text x="115" y="85" fontFamily="Arial Black, sans-serif" fontSize="56" fontWeight="900" fill="#ffffff">
+                  FIX
+                </text>
+                <text
+                  x="200"
+                  y="85"
+                  fontFamily="Arial Black, sans-serif"
+                  fontSize="56"
+                  fontWeight="900"
+                  fill="url(#mobileRedGradient)"
+                >
+                  JO
+                </text>
+              </svg>
+            </div>
             <button
               onClick={() => setIsMenuOpen(false)}
               className="p-2 hover:bg-sidebar-accent rounded-lg transition-colors"
@@ -163,6 +146,7 @@ export default function Header() {
             </ul>
           </nav>
 
+          {/* Services submenu */}
           <div className="mt-6">
             <h3 className="text-sidebar-foreground font-bold mb-4">خدماتنا</h3>
             <ul className="space-y-1">
