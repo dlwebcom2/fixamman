@@ -20,9 +20,8 @@ export default function FloatingButtons() {
 
   return (
     <>
-      {/* WhatsApp Button - Bottom Left */}
       <a
-        href="https://wa.me/962785580007"
+        href="https://wa.me/962781990001"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 left-6 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-40 animate-float"
@@ -33,9 +32,8 @@ export default function FloatingButtons() {
         </svg>
       </a>
 
-      {/* Call Button - Bottom Right */}
       <a
-        href="tel:0785580007"
+        href="tel:0781990001"
         className="fixed bottom-6 right-6 w-14 h-14 bg-primary rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-40 animate-float"
         style={{ animationDelay: "0.3s" }}
         aria-label="اتصل الآن"

@@ -17,7 +17,7 @@ export default function ContactSection() {
     e.preventDefault()
     // Handle form submission
     const whatsappMessage = `مرحباً، أنا ${formData.name}. ${formData.message}`
-    window.open(`https://wa.me/962785580007?text=${encodeURIComponent(whatsappMessage)}`, "_blank")
+    window.open(`https://wa.me/962781990001?text=${encodeURIComponent(whatsappMessage)}`, "_blank")
   }
 
   return (
@@ -34,8 +34,8 @@ export default function ContactSection() {
               </div>
               <div>
                 <h3 className="text-xl font-bold mb-2">اتصل بنا</h3>
-                <a href="tel:0785580007" className="text-lg text-primary hover:underline">
-                  0785580007
+                <a href="tel:0781990001" className="text-lg text-primary hover:underline">
+                  0781990001
                 </a>
               </div>
             </div>

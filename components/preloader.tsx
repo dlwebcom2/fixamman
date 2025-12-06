@@ -7,7 +7,6 @@ export default function Preloader() {
   const [progress, setProgress] = useState(0)
 
   useEffect(() => {
-    // Simulate loading progress
     const progressInterval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
@@ -18,7 +17,6 @@ export default function Preloader() {
       })
     }, 150)
 
-    // Hide preloader after loading
     const timer = setTimeout(() => {
       setIsLoading(false)
     }, 2500)
@@ -39,7 +37,6 @@ export default function Preloader() {
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Floating particles */}
         {[...Array(20)].map((_, i) => (
           <div
             key={i}
@@ -53,7 +50,6 @@ export default function Preloader() {
           />
         ))}
 
-        {/* Grid pattern */}
         <div
           className="absolute inset-0 opacity-5"
           style={{
@@ -68,16 +64,14 @@ export default function Preloader() {
 
       {/* Main logo animation */}
       <div className="relative mb-12">
-        {/* Glowing ring animation */}
         <div className="absolute -inset-8 rounded-full border-2 border-primary/30 animate-ping" />
         <div
           className="absolute -inset-12 rounded-full border border-primary/20 animate-pulse"
           style={{ animationDuration: "2s" }}
         />
 
-        {/* Animated Logo */}
         <div className="relative">
-          <svg width="200" height="100" viewBox="0 0 280 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width="180" height="180" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <linearGradient id="preloaderRedGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#ef4444" />
@@ -85,7 +79,7 @@ export default function Preloader() {
                 <stop offset="100%" stopColor="#b91c1c" />
               </linearGradient>
               <filter id="preloaderGlow" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+                <feGaussianBlur stdDeviation="3" result="coloredBlur" />
                 <feMerge>
                   <feMergeNode in="coloredBlur" />
                   <feMergeNode in="SourceGraphic" />
@@ -93,56 +87,68 @@ export default function Preloader() {
               </filter>
             </defs>
 
-            {/* Animated Wrench */}
-            <g className="animate-bounce" style={{ animationDuration: "1.5s" }}>
-              <path d="M35 95 L55 55 L65 60 L50 95 Z" fill="url(#preloaderRedGradient)" />
-              <circle cx="60" cy="50" r="15" fill="url(#preloaderRedGradient)" />
-              <circle cx="60" cy="50" r="8" fill="white" />
-              <rect x="30" y="92" width="25" height="8" rx="2" fill="url(#preloaderRedGradient)" />
-            </g>
+            {/* Rotating outer ring */}
+            <circle
+              cx="60"
+              cy="60"
+              r="56"
+              fill="none"
+              stroke="url(#preloaderRedGradient)"
+              strokeWidth="3"
+              strokeDasharray="20 10"
+              className="origin-center animate-spin"
+              style={{ animationDuration: "10s" }}
+            />
 
-            {/* Animated Gear */}
-            <g className="origin-[85px_70px] animate-spin" style={{ animationDuration: "3s" }}>
-              <circle cx="85" cy="70" r="18" fill="none" stroke="#ffffff" strokeWidth="6" />
-              <circle cx="85" cy="70" r="8" fill="#ffffff" />
-              {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
-                <rect
-                  key={i}
-                  x="82"
-                  y="48"
-                  width="6"
-                  height="12"
-                  rx="2"
-                  fill="#ffffff"
-                  transform={`rotate(${angle} 85 70)`}
-                />
-              ))}
-            </g>
+            {/* Inner circle background */}
+            <circle cx="60" cy="60" r="52" fill="#0a0a0a" />
 
-            {/* FIX text with animation */}
+            {/* FIX text with pulse */}
             <text
-              x="115"
-              y="85"
+              x="60"
+              y="48"
               fontFamily="Arial Black, sans-serif"
-              fontSize="56"
+              fontSize="22"
               fontWeight="900"
               fill="#ffffff"
+              textAnchor="middle"
               className="animate-pulse"
             >
               FIX
             </text>
 
-            {/* JO text with glow */}
             <text
-              x="200"
-              y="85"
+              x="45"
+              y="78"
               fontFamily="Arial Black, sans-serif"
-              fontSize="56"
+              fontSize="22"
               fontWeight="900"
               fill="url(#preloaderRedGradient)"
               filter="url(#preloaderGlow)"
             >
-              JO
+              J
+            </text>
+
+            <g className="origin-[78px_68px] animate-spin" style={{ animationDuration: "2s" }}>
+              {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map((angle, i) => (
+                <rect
+                  key={i}
+                  x="75"
+                  y="52"
+                  width="6"
+                  height="6"
+                  rx="1"
+                  fill="url(#preloaderRedGradient)"
+                  transform={`rotate(${angle} 78 68)`}
+                />
+              ))}
+              <circle cx="78" cy="68" r="12" fill="url(#preloaderRedGradient)" />
+              <circle cx="78" cy="68" r="5" fill="#0a0a0a" />
+            </g>
+
+            {/* Tagline */}
+            <text x="60" y="100" fontFamily="Arial, sans-serif" fontSize="8" fill="#9ca3af" textAnchor="middle">
+              صيانة احترافية
             </text>
           </svg>
         </div>
@@ -164,10 +170,8 @@ export default function Preloader() {
         </div>
       </div>
 
-      {/* Progress percentage */}
       <p className="text-primary font-bold text-lg">{Math.round(Math.min(progress, 100))}%</p>
 
-      {/* Animated dots */}
       <div className="flex gap-2 mt-6">
         {[0, 1, 2].map((i) => (
           <div

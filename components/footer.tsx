@@ -1,4 +1,5 @@
 import { Phone, MapPin, Mail, Heart, Code, Sparkles } from "lucide-react"
+import Link from "next/link"
 
 export default function Footer() {
   return (
@@ -9,7 +10,7 @@ export default function Footer() {
           {/* About */}
           <div className="md:col-span-2">
             <div className="mb-6">
-              <svg width="160" height="80" viewBox="0 0 280 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg width="100" height="100" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                   <linearGradient id="footerRedGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#ef4444" />
@@ -17,51 +18,54 @@ export default function Footer() {
                     <stop offset="100%" stopColor="#b91c1c" />
                   </linearGradient>
                   <filter id="footerGlow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+                    <feGaussianBlur stdDeviation="2" result="coloredBlur" />
                     <feMerge>
                       <feMergeNode in="coloredBlur" />
                       <feMergeNode in="SourceGraphic" />
                     </feMerge>
                   </filter>
                 </defs>
-                <g>
-                  <path d="M35 95 L55 55 L65 60 L50 95 Z" fill="url(#footerRedGradient)" />
-                  <circle cx="60" cy="50" r="15" fill="url(#footerRedGradient)" />
-                  <circle cx="60" cy="50" r="8" fill="white" />
-                  <rect x="30" y="92" width="25" height="8" rx="2" fill="url(#footerRedGradient)" />
-                </g>
-                <g>
-                  <circle cx="85" cy="70" r="18" fill="none" stroke="#ffffff" strokeWidth="6" />
-                  <circle cx="85" cy="70" r="8" fill="#ffffff" />
-                  {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
-                    <rect
-                      key={i}
-                      x="82"
-                      y="48"
-                      width="6"
-                      height="12"
-                      rx="2"
-                      fill="#ffffff"
-                      transform={`rotate(${angle} 85 70)`}
-                    />
-                  ))}
-                </g>
-                <text x="115" y="85" fontFamily="Arial Black, sans-serif" fontSize="56" fontWeight="900" fill="#ffffff">
+                <circle cx="60" cy="60" r="56" fill="none" stroke="url(#footerRedGradient)" strokeWidth="3" />
+                <circle cx="60" cy="60" r="52" fill="#0a0a0a" />
+                <text
+                  x="60"
+                  y="48"
+                  fontFamily="Arial Black, sans-serif"
+                  fontSize="22"
+                  fontWeight="900"
+                  fill="#ffffff"
+                  textAnchor="middle"
+                >
                   FIX
                 </text>
                 <text
-                  x="200"
-                  y="85"
+                  x="45"
+                  y="78"
                   fontFamily="Arial Black, sans-serif"
-                  fontSize="56"
+                  fontSize="22"
                   fontWeight="900"
                   fill="url(#footerRedGradient)"
                   filter="url(#footerGlow)"
                 >
-                  JO
+                  J
                 </text>
-                <rect x="115" y="95" width="140" height="4" rx="2" fill="url(#footerRedGradient)" />
-                <text x="140" y="120" fontFamily="Arial, sans-serif" fontSize="14" fill="#9ca3af" fontWeight="500">
+                <g>
+                  {[0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330].map((angle, i) => (
+                    <rect
+                      key={i}
+                      x="75"
+                      y="52"
+                      width="6"
+                      height="6"
+                      rx="1"
+                      fill="url(#footerRedGradient)"
+                      transform={`rotate(${angle} 78 68)`}
+                    />
+                  ))}
+                  <circle cx="78" cy="68" r="12" fill="url(#footerRedGradient)" />
+                  <circle cx="78" cy="68" r="5" fill="#0a0a0a" />
+                </g>
+                <text x="60" y="100" fontFamily="Arial, sans-serif" fontSize="8" fill="#9ca3af" textAnchor="middle">
                   صيانة احترافية
                 </text>
               </svg>
@@ -70,7 +74,6 @@ export default function Footer() {
               نقدم خدمات صيانة وإصلاح متكاملة لجميع الأجهزة الكهربائية المنزلية في عمان والأردن بأعلى معايير الجودة
               والاحترافية. فريقنا المتخصص جاهز لخدمتكم على مدار الساعة.
             </p>
-            {/* Social Links */}
             <div className="flex gap-3">
               <a
                 href="#"
@@ -89,7 +92,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://wa.me/962785580007"
+                href="https://wa.me/962781990001"
                 className="w-10 h-10 bg-white/10 hover:bg-[#25D366] rounded-lg flex items-center justify-center transition-colors"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -99,61 +102,75 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick Links - Added spare parts link */}
           <div>
             <h3 className="text-lg font-bold mb-4 text-primary">روابط سريعة</h3>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2">
+                <Link href="/" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2">
                   <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
                   الرئيسية
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#services"
+                <Link
+                  href="/#services"
                   className="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
                 >
                   <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
                   خدماتنا
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#about" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2">
+                <Link
+                  href="/spare-parts"
+                  className="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                >
+                  <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
+                  قطع الغيار
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/#about"
+                  className="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                >
                   <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
                   من نحن
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#contact" className="text-gray-400 hover:text-white transition-colors flex items-center gap-2">
+                <Link
+                  href="/#contact"
+                  className="text-gray-400 hover:text-white transition-colors flex items-center gap-2"
+                >
                   <span className="w-1.5 h-1.5 bg-primary rounded-full"></span>
                   اتصل بنا
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
             <h3 className="text-lg font-bold mb-4 text-primary">تواصل معنا</h3>
             <div className="space-y-4">
               <a
-                href="tel:0785580007"
+                href="tel:0781990001"
                 className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group"
               >
                 <div className="w-10 h-10 bg-white/10 group-hover:bg-primary rounded-lg flex items-center justify-center transition-colors">
                   <Phone className="w-5 h-5" />
                 </div>
-                <span>0785580007</span>
+                <span>0781990001</span>
               </a>
               <a
-                href="mailto:info@fix-amman.com"
+                href="mailto:info@fix-jo.com"
                 className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group"
               >
                 <div className="w-10 h-10 bg-white/10 group-hover:bg-primary rounded-lg flex items-center justify-center transition-colors">
                   <Mail className="w-5 h-5" />
                 </div>
-                <span>info@fix-amman.com</span>
+                <span>info@fix-jo.com</span>
               </a>
               <div className="flex items-center gap-3 text-gray-400">
                 <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
@@ -170,7 +187,7 @@ export default function Footer() {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-gray-400 text-sm">
-              © {new Date().getFullYear()} Fix Jo - مركز صيانة عمان المعتمد. جميع الحقوق محفوظة.
+              © {new Date().getFullYear()} Fix JO - مركز صيانة عمان المعتمد. جميع الحقوق محفوظة.
             </p>
             <div className="flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-primary/20 to-transparent rounded-full border border-primary/30">
               <span className="text-gray-400 text-sm">تصميم وبرمجة بواسطة</span>

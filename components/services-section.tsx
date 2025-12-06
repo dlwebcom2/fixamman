@@ -1,152 +1,163 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { ArrowLeft, Wrench, Sparkles, Shield } from "lucide-react"
+import { Phone, Wrench, Snowflake, Wind, UtensilsCrossed, Flame, Shirt } from "lucide-react"
 
 const services = [
   {
-    title: "صيانة الغسالات",
-    description: "إصلاح جميع أنواع الغسالات الأوتوماتيكية والعادية مع ضمان على الخدمة وقطع الغيار الأصلية",
-    image: "https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=600&q=80",
-    features: ["قطع غيار أصلية", "ضمان سنة"],
-  },
-  {
     title: "صيانة الثلاجات",
-    description: "خدمة إصلاح وصيانة الثلاجات والفريزرات بجميع أنواعها وماركاتها مع فريق فني متخصص",
-    image: "https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?w=600&q=80",
-    features: ["صيانة فورية", "أسعار منافسة"],
+    description: "عدم التبريد، الأصوات العالية، تسرب المياه - نصلحها في مكانها",
+    image: "/modern-refrigerator-appliance.jpg",
+    icon: Snowflake,
   },
   {
-    title: "صيانة المكيفات",
-    description: "تركيب وصيانة وتنظيف المكيفات السبليت والشباك مع خدمة تعبئة الغاز",
-    image: "https://images.unsplash.com/photo-1631545308938-e8f51e8ff71a?w=600&q=80",
-    features: ["تنظيف شامل", "تعبئة غاز"],
+    title: "صيانة الغسالات",
+    description: "عدم الدوران، تسرب المياه، الضوضاء - تدخل سريع لجميع الأعطال",
+    image: "/modern-washing-machine-appliance.jpg",
+    icon: Shirt,
   },
   {
     title: "صيانة الجلايات",
-    description: "إصلاح غسالات الصحون بجميع أنواعها مع توفير قطع الغيار الأصلية والمعتمدة",
-    image: "https://images.unsplash.com/photo-1585659722983-3a675dabf23d?w=600&q=80",
-    features: ["جميع الماركات", "خدمة سريعة"],
+    description: "عدم الغسيل، تسرب، روائح كريهة - إصلاح جميع الماركات",
+    image: "/modern-dishwasher-appliance.jpg",
+    icon: UtensilsCrossed,
+  },
+  {
+    title: "صيانة المكيفات",
+    description: "عدم التبريد، التقطير، الروائح - صيانة وتنظيف شامل",
+    image: "/modern-air-conditioner-unit.jpg",
+    icon: Wind,
   },
   {
     title: "صيانة النشافات",
-    description: "خدمة صيانة وإصلاح نشافات الملابس الكهربائية والغازية بأعلى جودة",
-    image: "https://images.unsplash.com/photo-1610557892470-55d9e80c0571?w=600&q=80",
-    features: ["كهربائي وغاز", "فحص مجاني"],
+    description: "عدم التجفيف، الحرارة الزائدة - إصلاح كهربائي وغاز",
+    image: "/modern-clothes-dryer-appliance.jpg",
+    icon: Flame,
   },
   {
     title: "صيانة أفران الغاز",
-    description: "إصلاح وصيانة أفران الغاز والكهرباء مع فحص شامل لضمان السلامة",
-    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80",
-    features: ["فحص السلامة", "صيانة دورية"],
+    description: "مشاكل الإشعال، التسخين، السلامة - فحص وإصلاح شامل",
+    image: "/modern-gas-oven-stove-appliance.jpg",
+    icon: Flame,
   },
 ]
 
 export default function ServicesSection() {
-  const [isVisible, setIsVisible] = useState(false)
+  const [visibleCards, setVisibleCards] = useState<boolean[]>(new Array(services.length).fill(false))
   const sectionRef = useRef<HTMLElement>(null)
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([])
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.1 },
-    )
+    const observers: IntersectionObserver[] = []
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
+    cardRefs.current.forEach((card, index) => {
+      if (card) {
+        const observer = new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting) {
+              setVisibleCards((prev) => {
+                const newState = [...prev]
+                newState[index] = true
+                return newState
+              })
+            }
+          },
+          { threshold: 0.2 },
+        )
+        observer.observe(card)
+        observers.push(observer)
+      }
+    })
 
-    return () => observer.disconnect()
+    return () => observers.forEach((obs) => obs.disconnect())
   }, [])
 
   return (
-    <section id="services" ref={sectionRef} className="py-24 bg-secondary">
+    <section id="services" ref={sectionRef} className="py-20 bg-secondary">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Section Header */}
-        <div
-          className={`text-center mb-16 transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
+        <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-4">
             <Wrench className="w-4 h-4 text-primary" />
             <span className="text-primary font-medium">خدماتنا</span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-6 text-balance">
-            نقدم حلولاً متكاملة لصيانة أجهزتك
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 text-balance">
+            خدمات صيانة الأجهزة المنزلية
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            فريقنا المتخصص جاهز لخدمتك في أي وقت مع ضمان الجودة وأفضل الأسعار
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            ثلاجات، غسالات، جلايات، مكيفات، نشافات وأفران - خدمة من نقطة واحدة
           </p>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, index) => (
-            <div
-              key={index}
-              className={`group relative bg-card rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 hover-lift ${
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
-            >
-              {/* Image */}
-              <div className="relative h-56 overflow-hidden">
-                <img
-                  src={service.image || "/placeholder.svg"}
-                  alt={service.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 via-foreground/20 to-transparent" />
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 max-w-5xl mx-auto">
+          {services.map((service, index) => {
+            const Icon = service.icon
+            const isFromRight = index % 2 === 1
 
-                {/* Feature Tags */}
-                <div className="absolute top-4 right-4 flex flex-col gap-2">
-                  {service.features.map((feature, idx) => (
-                    <span
-                      key={idx}
-                      className="bg-primary/90 text-white text-xs font-medium px-3 py-1 rounded-full backdrop-blur-sm"
-                    >
-                      {feature}
-                    </span>
-                  ))}
+            return (
+              <div
+                key={index}
+                ref={(el) => {
+                  cardRefs.current[index] = el
+                }}
+                className={`
+                  relative bg-card rounded-2xl border-2 border-primary/20 
+                  overflow-hidden transition-all duration-700 ease-out
+                  hover:border-primary hover:shadow-lg hover:shadow-primary/10
+                  ${
+                    visibleCards[index]
+                      ? "opacity-100 translate-x-0"
+                      : isFromRight
+                        ? "opacity-0 translate-x-16"
+                        : "opacity-0 -translate-x-16"
+                  }
+                `}
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
+                <div className="p-3 md:p-5 flex flex-col items-center text-center">
+                  {/* Appliance Image */}
+                  <div className="w-full h-24 md:h-40 mb-3 md:mb-4 flex items-center justify-center">
+                    <img
+                      src={service.image || "/placeholder.svg"}
+                      alt={service.title}
+                      className="max-h-full max-w-full object-contain drop-shadow-lg"
+                    />
+                  </div>
+
+                  {/* Icon */}
+                  <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary/10 flex items-center justify-center mb-2 md:mb-3">
+                    <Icon className="w-4 h-4 md:w-5 md:h-5 text-primary" />
+                  </div>
+
+                  {/* Title - Updated colors */}
+                  <h3 className="text-sm md:text-lg font-bold text-foreground mb-1 md:mb-2">{service.title}</h3>
+
+                  {/* Description - Hidden on mobile for cleaner look */}
+                  <p className="hidden md:block text-muted-foreground text-sm leading-relaxed">{service.description}</p>
                 </div>
               </div>
-
-              {/* Content */}
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors flex items-center gap-2">
-                  <Sparkles className="w-5 h-5 text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
-                  {service.title}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed mb-4">{service.description}</p>
-                <a
-                  href="tel:0785580007"
-                  className="inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all group/link"
-                >
-                  <span>اطلب الخدمة</span>
-                  <ArrowLeft className="w-4 h-4 group-hover/link:-translate-x-1 transition-transform" />
-                </a>
-              </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
 
-        {/* CTA */}
-        <div
-          className={`text-center mt-16 transition-all duration-700 delay-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-        >
+        <div className="flex flex-col sm:flex-row gap-3 justify-center mt-10 max-w-lg mx-auto">
           <a
-            href="tel:0785580007"
-            className="inline-flex items-center gap-3 bg-primary text-primary-foreground px-8 py-4 rounded-full text-lg font-medium hover:bg-primary/90 transition-all duration-300 hover:scale-105 shadow-lg shadow-primary/25"
+            href="tel:0781990001"
+            className="flex-1 flex items-center justify-center gap-2 bg-primary text-primary-foreground px-6 py-4 rounded-full font-medium hover:bg-primary/90 transition-all shadow-lg"
           >
-            <Shield className="w-5 h-5" />
-            <span>احجز موعد صيانة الآن</span>
+            <Phone className="w-5 h-5" />
+            <span>اتصل الآن</span>
+          </a>
+          <a
+            href="https://wa.me/962781990001"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 flex items-center justify-center gap-2 bg-foreground text-background px-6 py-4 rounded-full font-medium hover:bg-foreground/90 transition-all"
+          >
+            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+            </svg>
+            <span>طلب خدمة</span>
           </a>
         </div>
       </div>

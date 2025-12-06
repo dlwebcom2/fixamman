@@ -41,7 +41,7 @@ export default function Hero() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
             </span>
-            <span className="text-foreground/70 text-sm">مركز صيانة عمان المعتمد</span>
+            <span className="text-foreground/70 text-sm">Fix JO - مركز صيانة عمان المعتمد</span>
           </div>
 
           {/* Main Heading - Red text with shimmer effect */}
@@ -51,11 +51,11 @@ export default function Hero() {
             }`}
           >
             <span className="block text-primary relative">
-              أفضل شركة لصيانة
+              افضل شركة لصيانة
               <span className="absolute inset-0 animate-shimmer opacity-30"></span>
             </span>
-            <span className="block text-primary">الغسالات والثلاجات و</span>
-            <span className="block text-primary">الجلايات في عمان</span>
+            <span className="block text-primary">الغسالات و الثلاجات والجلايات</span>
+            <span className="block text-primary">في عمان والأردن</span>
           </h1>
 
           {/* Description */}
@@ -92,14 +92,14 @@ export default function Hero() {
             }`}
           >
             <a
-              href="tel:0785580007"
+              href="tel:0781990001"
               className="inline-flex items-center justify-center gap-3 bg-primary text-primary-foreground px-10 py-4 rounded-lg text-lg font-bold hover:bg-primary/90 transition-all duration-300 hover:scale-105 shadow-lg shadow-primary/25 animate-pulse-glow"
             >
               <Phone className="w-5 h-5" />
               <span>للاتصال بنا</span>
             </a>
             <a
-              href="https://wa.me/962785580007"
+              href="https://wa.me/962781990001"
               className="inline-flex items-center justify-center gap-3 bg-[#25D366] text-white px-10 py-4 rounded-lg text-lg font-bold hover:bg-[#25D366]/90 transition-all duration-300 hover:scale-105 shadow-lg"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
